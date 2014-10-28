@@ -28,7 +28,6 @@ public class Minimax extends Algorithm{
         adjlist = parentNode.getAdjList();
         for (Node node1 : adjlist) {
             GameNodeData gd=(GameNodeData)node1.getData();
-            System.out.println("m"+gd.level);
             if(gd.level>gdp.level){
                 children.add(node1);
             }
@@ -45,7 +44,6 @@ public class Minimax extends Algorithm{
         }
         else{    
             ArrayList<Node> children=moveGen(j);
-            System.out.println(children.size());
             for (Node child:children){
                 int v = getMinimax(child);
                 GameNodeData gd1=(GameNodeData) child.getData();
@@ -54,7 +52,7 @@ public class Minimax extends Algorithm{
                 updateNode(child); 
                 if(child.equals(children.get(0)))
                     cv=v;
-                else if(child.getState()==alvis301.State.max)
+                else if(j.getState()==alvis301.State.max)
                     cv=(cv>v)?cv:v;
                 else
                     cv=(cv<v)?cv:v;
