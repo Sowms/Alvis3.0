@@ -140,7 +140,8 @@ public class GraphCreator {
             nodes.put(n1, N1);
             g.setNodes(nodes);
             noEdges++;
-            g.createEdge(e);
+            if (!g.getEdges().containsValue(e))
+                g.createEdge(e);
         }
     }
     public void create(String density) {
@@ -193,7 +194,8 @@ public class GraphCreator {
                 n2.setAdjEdgeList(adjEdgeList2);
                 g.setNode(n1);
                 g.setNode(n2);
-                g.createEdge(newEdge);
+                if (!g.getEdges().containsValue(newEdge))
+                    g.createEdge(newEdge);
             }
         }
         for (int i=40; i<maxX; i+=gridSize) {
@@ -226,7 +228,8 @@ public class GraphCreator {
                 n2.setAdjEdgeList(adjEdgeList2);
                 g.setNode(n1);
                 g.setNode(n2);
-                g.createEdge(newEdge);
+                if (!g.getEdges().containsValue(newEdge))
+                    g.createEdge(newEdge);
             }
         }
         for (int i=60; i<maxX; i+=gridSize) {
@@ -259,7 +262,8 @@ public class GraphCreator {
                 n2.setAdjEdgeList(adjEdgeList2);
                 g.setNode(n1);
                 g.setNode(n2);
-                g.createEdge(newEdge);
+                if (!g.getEdges().containsValue(newEdge))
+                    g.createEdge(newEdge);
             }
         }
         int percent = 200;

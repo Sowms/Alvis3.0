@@ -236,7 +236,7 @@ public class TreeWindow extends javax.swing.JFrame {
             Edge e = (Edge) pairs.getValue();
             State state = e.getState();
             if(state==State.path) {
-                e.setState(State.pipe);
+                e.setState(State.pipepath);
                 path.add(e);
             }        
         }

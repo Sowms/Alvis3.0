@@ -11,5 +11,5 @@ package alvis301;
  * @author SavithaSam
  */
 public enum State {
-    unvisited, open, closed, relay, goal, start, path,pipe, max, min, tsp,terminal; 
+    unvisited, open, closed, relay, goal, start, path,pipe, max, min, tsp,terminal, pipepath; 
 }

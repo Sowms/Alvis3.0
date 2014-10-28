@@ -37,6 +37,7 @@ public class GraphPanel extends javax.swing.JPanel {
         colorMap.put(State.relay,Color.MAGENTA);
         colorMap.put(State.path,new Color(153,0,153));
         colorMap.put(State.pipe,Color.black);
+        colorMap.put(State.pipepath,Color.black);
         colorMap.put(State.max,Color.red);
         colorMap.put(State.min,Color.blue);
         colorMap.put(State.tsp,new Color(204,204,255));     
@@ -72,8 +73,8 @@ public class GraphPanel extends javax.swing.JPanel {
             double x21 = n2.getX(), y22 = n2.getY();
             g2d.setColor(colorMap.get(e.getState()));
             Line2D line = new Line2D.Double(x11, y11, x21, y22);
-            if(e.getState()==State.pipe || (gw!=null && gw.path.contains(e)) || (tw!=null && tw.path.contains(e)) || (trw!=null && trw.path.contains(e))) {
-                g2d.setColor(colorMap.get(State.pipe));
+            if(e.getState()==State.pipepath || (gw!=null && gw.path.contains(e) && e.getState()!=State.path) || (trw!=null && trw.path.contains(e))) {
+                g2d.setColor(colorMap.get(State.pipepath));
                 g2d.setStroke(new BasicStroke(3));
                 if (tw!=null) { 
                     g2d.setColor(Color.gray);

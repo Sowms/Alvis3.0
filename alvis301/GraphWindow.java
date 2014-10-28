@@ -397,9 +397,12 @@ public final class GraphWindow extends javax.swing.JFrame {
             Edge e = (Edge) pairs.getValue();
             State state = e.getState();
             if(state==State.path) {
-                e.setState(State.pipe);
+                e.setState(State.pipepath);
                 path.add(e);
-            }        
+            }  
+            else if(state!=State.unvisited) {
+                e.setState(State.pipe);
+            }
         }
         g.setNodes(nodes);
         Graph.setInstance(g);
@@ -417,15 +420,12 @@ public final class GraphWindow extends javax.swing.JFrame {
             bfs.setGraph();
             bfs.start();
             graphPanel1.repaint();
-            System.out.println("over");
         }
         else if (choice.equals("[1]")) {
             DFSAlgorithm dfs = new DFSAlgorithm(1);
             dfs.setGraph();
             dfs.start();
             graphPanel1.repaint();
-            System.out.println("over");
-            
         }
         jButton6.setEnabled(true);
     }                                        
