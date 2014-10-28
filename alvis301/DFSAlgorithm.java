@@ -2,30 +2,35 @@
 package alvis301;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ *
+ * @author sowmya
+ */
 
-public class BFSAlgorithm extends Algorithm {
+public class DFSAlgorithm extends Algorithm {
 
-    public ArrayList<ArrayList<Node>> open;
-    public ArrayList<ArrayList<Node>> closed;
+    public LinkedList<ArrayList<Node>> open;
+    public LinkedList<ArrayList<Node>> closed;
     
-    public BFSAlgorithm(int type) {
-        super(type);
+    public DFSAlgorithm(int t) {
+        super(t);
     }
+
     @Override
     public boolean goalTest(Node goalNode) {
-        
         int nodeID = goalNode.getNodeID();
         return (nodeID == g.getGoalID());
     }
 
     @Override
-    public ArrayList<ArrayList<Node>> moveGen(Node parentNode) {
+    public LinkedList<ArrayList<Node>> moveGen(Node parentNode) {
         
         ArrayList<Node> adjList = parentNode.getAdjList();
-        ArrayList<ArrayList<Node>> children = new ArrayList<ArrayList<Node>>();
+        LinkedList<ArrayList<Node>> children = new LinkedList<ArrayList<Node>>();
         for (Node n : adjList) {
             ArrayList<Node> nodePair  = new ArrayList<Node>();
             nodePair.add(n);
@@ -41,14 +46,13 @@ public class BFSAlgorithm extends Algorithm {
         first = new ArrayList<Node>();
         first.add(g.getNode(g.getStartID()));
         first.add(null);
-        open = new ArrayList<ArrayList<Node>>();
-        closed = new ArrayList<ArrayList<Node>>();
+        open = new LinkedList<ArrayList<Node>>();
+        closed = new LinkedList<ArrayList<Node>>();
         open.add(first);
         while (!open.isEmpty()) {
             ArrayList <Node> nodePair = open.remove(0);
             Node node = nodePair.get(0);
             if (goalTest(node)) {
-             
                 ReconstructPath(nodePair);
                 try {   
                 display();
@@ -61,16 +65,16 @@ public class BFSAlgorithm extends Algorithm {
             node.setState(alvis301.State.closed);
             Node aNode = nodePair.get(1);
             if (aNode!=null) {
-            ArrayList<Edge> adjEdgeList = node.getAdjEdgeList();
-            for (Edge e : adjEdgeList) {
-                Integer nodeID1 = e.getNodeID1();
-                Integer nodeID2 = e.getNodeID2();
-                if((nodeID1.equals(aNode.getNodeID())) || (nodeID2.equals(aNode.getNodeID()))) {
-                    e.setState(alvis301.State.closed);
-                    updateEdge(e);
-                    break;
+                ArrayList<Edge> adjEdgeList = node.getAdjEdgeList();
+                for (Edge e : adjEdgeList) {
+                    Integer nodeID1 = e.getNodeID1();
+                    Integer nodeID2 = e.getNodeID2();
+                    if((nodeID1.equals(aNode.getNodeID())) || (nodeID2.equals(aNode.getNodeID()))) {
+                        e.setState(alvis301.State.closed);
+                        updateEdge(e);
+                        break;
+                    }
                 }
-            }
             }
             updateNode(node);
             try {   
@@ -78,9 +82,9 @@ public class BFSAlgorithm extends Algorithm {
             } catch (InterruptedException ex) {
                 Logger.getLogger(BFSAlgorithm.class.getName()).log(Level.SEVERE, null, ex);
             }
-            ArrayList<ArrayList<Node>> children = moveGen(node);
-            ArrayList<ArrayList<Node>> noLoops = removeSeen(children);
-            open.addAll(noLoops);
+            LinkedList<ArrayList<Node>> children = moveGen(node);
+            LinkedList<ArrayList<Node>> noLoops = removeSeen(children);
+            open.addAll(0,noLoops);
             for (ArrayList<Node> open1 : open) {
                 Node nParent = open1.get(1);
                 if (nParent!=null) {
@@ -102,20 +106,20 @@ public class BFSAlgorithm extends Algorithm {
         }            
     }
 
-    private ArrayList<ArrayList<Node>> removeSeen(ArrayList<ArrayList<Node>> nodes) {
+    private LinkedList<ArrayList<Node>> removeSeen(LinkedList<ArrayList<Node>> nodes) {
         
         if(nodes.isEmpty())
             return nodes;
         Node n = nodes.get(0).get(0);
         if (OccursIn(n,open) || OccursIn(n,closed)) {
-            ArrayList<ArrayList<Node>> newList = new ArrayList<ArrayList<Node>>();
+            LinkedList<ArrayList<Node>> newList = new LinkedList<ArrayList<Node>>();
             newList.addAll(nodes);
             newList.remove(nodes.get(0));
             return removeSeen(newList);
         }
         else {
-            ArrayList<ArrayList<Node>> newList = new ArrayList<ArrayList<Node>>();
-            ArrayList<ArrayList<Node>> tailList = new ArrayList<ArrayList<Node>>();
+            LinkedList<ArrayList<Node>> newList = new LinkedList<ArrayList<Node>>();
+            LinkedList<ArrayList<Node>> tailList = new LinkedList<ArrayList<Node>>();
             tailList.addAll(nodes);
             tailList.remove(nodes.get(0));
             newList.add(nodes.get(0));
@@ -124,14 +128,14 @@ public class BFSAlgorithm extends Algorithm {
         }
     }
 
-    private boolean OccursIn(Node n, ArrayList<ArrayList<Node>> nodeList) {
+    private boolean OccursIn(Node n, LinkedList<ArrayList<Node>> nodeList) {
     
         if(nodeList.isEmpty())
             return false;
         if (n.equals(nodeList.get(0).get(0)))
             return true;
-        ArrayList<ArrayList<Node>> newList;
-        newList = new ArrayList<ArrayList<Node>>();
+        LinkedList<ArrayList<Node>> newList;
+        newList = new LinkedList<ArrayList<Node>>();
         newList.addAll(nodeList);
         newList.remove(nodeList.get(0));
         return OccursIn(n,newList);
@@ -162,17 +166,17 @@ public class BFSAlgorithm extends Algorithm {
             parent=nodePair1.get(1); 
         }
     }
-    private ArrayList<Node> findLink(Node parent, ArrayList<ArrayList<Node>> nodes)
+    private ArrayList<Node> findLink(Node parent, LinkedList<ArrayList<Node>> nodes)
     {
          if(parent.equals(nodes.get(0).get(0)))
             return nodes.get(0);
          else  
          { 
              
-            ArrayList<ArrayList<Node>> temp=new ArrayList<ArrayList<Node>>();
+            LinkedList<ArrayList<Node>> temp=new LinkedList<ArrayList<Node>>();
             temp.addAll(nodes);
             temp.remove(nodes.get(0));
             return findLink(parent,temp);
          }  
-    }
+    }    
 }

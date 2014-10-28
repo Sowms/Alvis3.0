@@ -53,7 +53,6 @@ public abstract class Algorithm extends Thread {
         
         try {
             String name = Thread.currentThread().getName();
-            System.out.println(name +" :sleeping for 3 seconds");
             if(type==1) {
                 Thread.sleep(GraphWindow.time);
             }
@@ -63,10 +62,8 @@ public abstract class Algorithm extends Thread {
             else if(type==3) {
                 Thread.sleep(TSPWindow.time);
             }
-            System.out.println(name + "creating code block for event thread");
             Runnable showPanelRun = new Runnable() {
                 public void run() {
-                    System.out.println("main about to repaint");
                     try {
                         if(type==1)
                             instance1.showGraph();
@@ -79,9 +76,7 @@ public abstract class Algorithm extends Thread {
                     }
                 }
             };
-            System.out.println(name+"about to invokeAndWait()");
             SwingUtilities.invokeAndWait(showPanelRun);
-            System.out.println(name+"back from invokeAndWait()");
             } catch ( InterruptedException ix ) {
                 System.out.println("main interrupted while waiting on invokeAndWait()");
             } catch ( InvocationTargetException x ) {

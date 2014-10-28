@@ -419,6 +419,14 @@ public final class GraphWindow extends javax.swing.JFrame {
             graphPanel1.repaint();
             System.out.println("over");
         }
+        else if (choice.equals("[1]")) {
+            DFSAlgorithm dfs = new DFSAlgorithm(1);
+            dfs.setGraph();
+            dfs.start();
+            graphPanel1.repaint();
+            System.out.println("over");
+            
+        }
         jButton6.setEnabled(true);
     }                                        
 
