@@ -30,6 +30,9 @@ public class GraphPanel extends javax.swing.JPanel {
     public GraphPanel() {
         colorMap = new HashMap();
         colorMap.put(State.unvisited,Color.lightGray);
+        colorMap.put(State.boundary,new Color(0,153,0));
+        colorMap.put(State.rollback,new Color(255,102,0));
+        
         colorMap.put(State.closed,new Color(153,153,255));
         colorMap.put(State.goal,Color.blue);
         colorMap.put(State.open,new Color(255,102,102));

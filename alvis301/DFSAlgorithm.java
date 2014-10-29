@@ -41,7 +41,7 @@ public class DFSAlgorithm extends Algorithm {
     @Override
     public void run() {
         ArrayList<Node> first;
-        first = new ArrayList<Node>();
+        first = new ArrayList<>();
         first.add(g.getNode(g.getStartID()));
         first.add(null);
         open = new LinkedList<ArrayList<Node>>();

@@ -62,6 +62,7 @@ public abstract class Algorithm extends Thread {
                 Thread.sleep(TSPWindow.time);
             }
             Runnable showPanelRun = new Runnable() {
+                @Override
                 public void run() {
                     try {
                         if(type==1)
@@ -86,12 +87,14 @@ public abstract class Algorithm extends Thread {
         
     public abstract boolean goalTest(Node goalNode);
     public abstract Object moveGen(Node parentNode);
+    // this method will get a message for the user as a string
     public String getInput(final String message) {
         final GraphWindow instance1 = GraphWindow.getInstance();
         final TreeWindow instance2 = TreeWindow.getInstance();
         final TSPWindow instance3 = TSPWindow.getInstance();
         try {
             Runnable showPanelRun = new Runnable() {
+                @Override
                 public void run() {
                     if (type == 1)
                             ans = JOptionPane.showInputDialog(instance1,message,"",1);
@@ -108,6 +111,30 @@ public abstract class Algorithm extends Thread {
                 System.out.println("main exception thrown from run()");
             }
         return ans;
+    }
+    // this method will display a message on the UI
+    public void displayMessage(final String message) {
+        final GraphWindow instance1 = GraphWindow.getInstance();
+        final TreeWindow instance2 = TreeWindow.getInstance();
+        final TSPWindow instance3 = TSPWindow.getInstance();
+        try {
+            Runnable showPanelRun = new Runnable() {
+                @Override
+                public void run() {
+                    if (type == 1)
+                            JOptionPane.showMessageDialog(instance1,message,"",1);
+                    else if (type == 2)
+                            JOptionPane.showMessageDialog(instance2,message,"",1);
+                    else if (type == 3)
+                            JOptionPane.showMessageDialog(instance3,message,"",1);
+                }
+            };
+            SwingUtilities.invokeAndWait(showPanelRun);
+            } catch ( InterruptedException ix ) {
+                System.out.println("main interrupted while waiting on invokeAndWait()");
+            } catch ( InvocationTargetException x ) {
+                System.out.println("main exception thrown from run()");
+            }
     }
     @Override
     //write your code in this method in the extended class
