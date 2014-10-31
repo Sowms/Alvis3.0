@@ -54,11 +54,7 @@ public class DFSAlgorithm extends Algorithm {
             Node node = nodePair.get(0);
             if (goalTest(node)) {
                 ReconstructPath(nodePair);
-                try {   
                 display();
-                } catch (InterruptedException ex) {
-                    Logger.getLogger(BFSAlgorithm.class.getName()).log(Level.SEVERE, null, ex);
-                }
                 return;
             }
             closed.add(nodePair);
@@ -77,11 +73,7 @@ public class DFSAlgorithm extends Algorithm {
                 }
             }
             updateNode(node);
-            try {   
-                display();
-            } catch (InterruptedException ex) {
-                Logger.getLogger(BFSAlgorithm.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            display();
             LinkedList<ArrayList<Node>> children = moveGen(node);
             LinkedList<ArrayList<Node>> noLoops = removeSeen(children);
             open.addAll(0,noLoops);

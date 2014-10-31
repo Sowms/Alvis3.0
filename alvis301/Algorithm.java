@@ -45,7 +45,7 @@ public abstract class Algorithm extends Thread {
         type = t;
     }
     //call this function to display on the UI
-    public void display() throws InterruptedException {
+    public void display() {
         
         final GraphWindow instance1 = GraphWindow.getInstance();
         final TreeWindow instance2 = TreeWindow.getInstance();

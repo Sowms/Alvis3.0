@@ -41,15 +41,10 @@ public class TSPGreedy extends Algorithm{
         int counter = 0;
         while (counter < 20) {
             ArrayList<Node> next = getRandomSolution();
-            //System.out.println("hi"+next.size()+"|"+cur.size());
             if ( costTour(next) < costTour(cur) ) {
                 setTour(next);
                 cur = next;
-                try {
-                    display();
-                } catch (InterruptedException ex) {
-                    Logger.getLogger(TSPGreedy.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                display();
                 printSolution(cur);
             }
         }

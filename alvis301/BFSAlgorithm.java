@@ -2,9 +2,6 @@
 package alvis301;
 
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 
 public class BFSAlgorithm extends Algorithm {
 
@@ -50,11 +47,7 @@ public class BFSAlgorithm extends Algorithm {
             if (goalTest(node)) {
              
                 ReconstructPath(nodePair);
-                try {   
                 display();
-                } catch (InterruptedException ex) {
-                    Logger.getLogger(BFSAlgorithm.class.getName()).log(Level.SEVERE, null, ex);
-                }
                 return;
             }
             closed.add(nodePair);
@@ -73,11 +66,7 @@ public class BFSAlgorithm extends Algorithm {
             }
             }
             updateNode(node);
-            try {   
-                display();
-            } catch (InterruptedException ex) {
-                Logger.getLogger(BFSAlgorithm.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            display();
             ArrayList<ArrayList<Node>> children = moveGen(node);
             ArrayList<ArrayList<Node>> noLoops = removeSeen(children);
             open.addAll(noLoops);

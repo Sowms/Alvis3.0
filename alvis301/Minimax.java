@@ -68,14 +68,8 @@ public class Minimax extends Algorithm{
            System.out.println("a"+gd.value);
            root.setData(gd);
            updateNode(root);
-           
            printPath(root);
-        try {
-            display();
-        } catch (InterruptedException ex) {
-            Logger.getLogger(Minimax.class.getName()).log(Level.SEVERE, null, ex);
-        }
-           
+           display();   
     }
     public void printPath(Node root){
         Node cur=root;
@@ -107,8 +101,6 @@ public class Minimax extends Algorithm{
                         min = gd.value;
                         minNode = children.get(i);
                     }
-                //} 
-                    
             }
             if (cur.getState() == alvis301.State.max) {
                 next = maxNode;
