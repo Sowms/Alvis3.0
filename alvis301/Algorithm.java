@@ -5,6 +5,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 
 
@@ -50,9 +51,7 @@ public abstract class Algorithm extends Thread {
         final GraphWindow instance1 = GraphWindow.getInstance();
         final TreeWindow instance2 = TreeWindow.getInstance();
         final TSPWindow instance3 = TSPWindow.getInstance();
-        
         try {
-            String name = Thread.currentThread().getName();
             if(type==1) {
                 Thread.sleep(GraphWindow.time);
             }
@@ -83,8 +82,33 @@ public abstract class Algorithm extends Thread {
                 System.out.println("main exception thrown from run()");
             }
     }
+    static String ans = "";
+        
     public abstract boolean goalTest(Node goalNode);
     public abstract Object moveGen(Node parentNode);
+    public String getInput(final String message) {
+        final GraphWindow instance1 = GraphWindow.getInstance();
+        final TreeWindow instance2 = TreeWindow.getInstance();
+        final TSPWindow instance3 = TSPWindow.getInstance();
+        try {
+            Runnable showPanelRun = new Runnable() {
+                public void run() {
+                    if (type == 1)
+                            ans = JOptionPane.showInputDialog(instance1,message,"",1);
+                    else if (type == 2)
+                            ans = JOptionPane.showInputDialog(instance2,message,"",1);
+                    else if (type == 3)
+                            ans = JOptionPane.showInputDialog(instance3,message,"",1);
+                }
+            };
+            SwingUtilities.invokeAndWait(showPanelRun);
+            } catch ( InterruptedException ix ) {
+                System.out.println("main interrupted while waiting on invokeAndWait()");
+            } catch ( InvocationTargetException x ) {
+                System.out.println("main exception thrown from run()");
+            }
+        return ans;
+    }
     @Override
     //write your code in this method in the extended class
     public abstract void run();
