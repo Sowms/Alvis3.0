@@ -46,7 +46,8 @@ public class TreeCreator {
                 n.setState(State.min);
             gd=new GameNodeData();
             gd.terminal=true;
-            gd.value=rand1.nextInt(100)+1;
+            gd.value=rand1.nextInt(201) - 100;
+            
             gd.level=no_of_levels+1;
             System.out.println(gd.value);
             n.setData(gd);

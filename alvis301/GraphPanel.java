@@ -21,31 +21,16 @@ public class GraphPanel extends javax.swing.JPanel {
     /**
      * Creates new form GraphPanel
      */
-    HashMap <State,Color> colorMap;
+    public HashMap <State,Color> colorMap;
     Graph gr;
     GraphWindow gw; 
     TSPWindow tw;
     TreeWindow trw;
     int x1,x2,y1,y2;
     public GraphPanel() {
-        colorMap = new HashMap();
-        colorMap.put(State.unvisited,Color.lightGray);
-        colorMap.put(State.boundary,new Color(0,153,0));
-        colorMap.put(State.rollback,new Color(255,102,0));
-        
-        colorMap.put(State.closed,new Color(153,153,255));
-        colorMap.put(State.goal,Color.blue);
-        colorMap.put(State.open,new Color(255,102,102));
-        colorMap.put(State.start,Color.red);
-        colorMap.put(State.relay,Color.MAGENTA);
-        colorMap.put(State.path,new Color(153,0,153));
-        colorMap.put(State.pipe,Color.black);
-        colorMap.put(State.pipepath,Color.black);
-        colorMap.put(State.max,Color.red);
-        colorMap.put(State.min,Color.blue);
-        colorMap.put(State.tsp,new Color(204,204,255));     
         gr = Graph.getInstance();
         gw = GraphWindow.getInstance();
+        colorMap = ColorMap.getMap();
     }
    
     @Override
@@ -90,6 +75,8 @@ public class GraphPanel extends javax.swing.JPanel {
                     g2d.setStroke(new BasicStroke(1));
                     if(e.getState() == State.path)
                         g2d.setStroke(new BasicStroke(2));
+                    if(e.getState() == State.pop_path)
+                        g2d.setStroke(new BasicStroke(4));
                     g2d.draw(line);
                 }
             }

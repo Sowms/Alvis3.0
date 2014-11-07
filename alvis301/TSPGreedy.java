@@ -59,7 +59,8 @@ public class TSPGreedy extends Algorithm{
     }
     public double costTour(ArrayList<Node> tour) {
         
-        Node prev = tour.get(0);
+        Node first = tour.get(0);
+        Node prev = first;
         //tour.remove(0);
         double cost = 0;
         for (Node n : tour) {
@@ -68,6 +69,7 @@ public class TSPGreedy extends Algorithm{
             cost = cost + distance(prev,n);
             prev = n;
         }
+        cost = cost + distance(prev,first);
         return cost;
     }
     public double distance(Node n1, Node n2) {

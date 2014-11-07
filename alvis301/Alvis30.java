@@ -34,6 +34,8 @@ public class Alvis30 {
         }
         
         HomeWindow Main = new HomeWindow();
+        ColorMap cm = new ColorMap();
+        ColorMap.setInstance(cm);
         Main.setVisible(true);
         Main.setTitle("AlVis 3.0");
         Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();

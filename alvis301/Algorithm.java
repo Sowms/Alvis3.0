@@ -5,6 +5,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 
@@ -89,19 +90,11 @@ public abstract class Algorithm extends Thread {
     public abstract Object moveGen(Node parentNode);
     // this method will get a message for the user as a string
     public String getInput(final String message) {
-        final GraphWindow instance1 = GraphWindow.getInstance();
-        final TreeWindow instance2 = TreeWindow.getInstance();
-        final TSPWindow instance3 = TSPWindow.getInstance();
         try {
             Runnable showPanelRun = new Runnable() {
                 @Override
                 public void run() {
-                    if (type == 1)
-                            ans = JOptionPane.showInputDialog(instance1,message,"",1);
-                    else if (type == 2)
-                            ans = JOptionPane.showInputDialog(instance2,message,"",1);
-                    else if (type == 3)
-                            ans = JOptionPane.showInputDialog(instance3,message,"",1);
+                    ans = JOptionPane.showInputDialog(null,message,"",1);
                 }
             };
             SwingUtilities.invokeAndWait(showPanelRun);
@@ -114,19 +107,27 @@ public abstract class Algorithm extends Thread {
     }
     // this method will display a message on the UI
     public void displayMessage(final String message) {
-        final GraphWindow instance1 = GraphWindow.getInstance();
-        final TreeWindow instance2 = TreeWindow.getInstance();
-        final TSPWindow instance3 = TSPWindow.getInstance();
         try {
             Runnable showPanelRun = new Runnable() {
                 @Override
                 public void run() {
-                    if (type == 1)
-                            JOptionPane.showMessageDialog(instance1,message,"",1);
-                    else if (type == 2)
-                            JOptionPane.showMessageDialog(instance2,message,"",1);
-                    else if (type == 3)
-                            JOptionPane.showMessageDialog(instance3,message,"",1);
+                    JOptionPane.showMessageDialog(null,message,"",1);
+                }
+            };
+            SwingUtilities.invokeAndWait(showPanelRun);
+            } catch ( InterruptedException ix ) {
+                System.out.println("main interrupted while waiting on invokeAndWait()");
+            } catch ( InvocationTargetException x ) {
+                System.out.println("main exception thrown from run()");
+            }
+    }
+    // this method will display a component on the UI
+    public void displayComponent(final JComponent UIcomponent) {
+        try {
+            Runnable showPanelRun = new Runnable() {
+                @Override
+                public void run() {
+                    JOptionPane.showMessageDialog(null,UIcomponent,"",1);
                 }
             };
             SwingUtilities.invokeAndWait(showPanelRun);

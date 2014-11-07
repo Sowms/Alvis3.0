@@ -12,6 +12,7 @@ import static alvis301.State.*;
 public class Edge {
 
     private int edgeID;
+    private double cost;
     private State edgeState;
     private final int nodeID1, nodeID2;
     private EdgeData data;
@@ -24,6 +25,12 @@ public class Edge {
     }
     public int getEdgeID() {
         return edgeID;
+    }
+    public double getCost() {
+        return cost;
+    }
+    public void setCost(double value) {
+        cost = value;
     }
     public void setEdgeID(int ID) {
         edgeID = ID;

@@ -68,6 +68,9 @@ public class GraphCreator {
 
     Graph g;
     ArrayList <component> components = new ArrayList<component>();
+    public double distance(Node n1, Node n2) {
+        return Math.sqrt(Math.pow((n1.getX()-n2.getX()),2)+Math.pow((n1.getY()-n2.getY()),2));
+    }
     public void removeAdj(Node node1, Node node2, Edge edge) {
         ArrayList<Edge> adjEdgeList1 = node1.getAdjEdgeList();
         ArrayList<Edge> adjEdgeList2 = node2.getAdjEdgeList();
@@ -150,7 +153,6 @@ public class GraphCreator {
         Dimension panelSize = Toolkit.getDefaultToolkit().getScreenSize();
         int maxX = panelSize.width - 100;
         int maxY = panelSize.height - 300;
-        Random r = new Random();
         int gridSize = 20, id = 0;
         for (int i=40; i<maxX; i+=gridSize) {
             for (int j=40; j<maxY; j+=gridSize) {
@@ -180,6 +182,10 @@ public class GraphCreator {
                 Edge newEdge = new Edge(nodeid1,nodeid2,id);
                 Node n1 = g.getNode(nodeid1);
                 Node n2 = g.getNode(nodeid2);
+                double dist = distance(n1,n2);
+                Random generator = new Random();
+                int delta = generator.nextInt((int)(0.1*dist));
+                newEdge.setCost(dist+delta);
                 ArrayList <Node> adjList1 = n1.getAdjList();
                 ArrayList <Node> adjList2 = n2.getAdjList();
                 adjList1.add(n2);
@@ -214,6 +220,10 @@ public class GraphCreator {
                 Edge newEdge = new Edge(nodeid1,nodeid2,id);
                 Node n1 = g.getNode(nodeid1);
                 Node n2 = g.getNode(nodeid2);
+                double dist = distance(n1,n2);
+                Random generator = new Random();
+                int delta = generator.nextInt((int)(0.1*dist));
+                newEdge.setCost(dist+delta);
                 ArrayList <Node> adjList1 = n1.getAdjList();
                 ArrayList <Node> adjList2 = n2.getAdjList();
                 adjList1.add(n2);
@@ -248,6 +258,10 @@ public class GraphCreator {
                 Edge newEdge = new Edge(nodeid1,nodeid2,id);
                 Node n1 = g.getNode(nodeid1);
                 Node n2 = g.getNode(nodeid2);
+                double dist = distance(n1,n2);
+                Random generator = new Random();
+                int delta = generator.nextInt((int)(0.1*dist));
+                newEdge.setCost(dist+delta);
                 ArrayList <Node> adjList1 = n1.getAdjList();
                 ArrayList <Node> adjList2 = n2.getAdjList();
                 adjList1.add(n2);
