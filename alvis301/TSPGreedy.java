@@ -78,6 +78,7 @@ public class TSPGreedy extends Algorithm{
     public void setTour (ArrayList <Node> tour) {
         
         Node prev = tour.get(0);
+        Node first = prev;
         //tour.remove(0);
         for (Map.Entry pairs : edges.entrySet()) {
             Edge e = (Edge) pairs.getValue();
@@ -100,6 +101,18 @@ public class TSPGreedy extends Algorithm{
             }
             prev = n;
         }
+        
+        ArrayList<Edge> adjEdgeList = prev.getAdjEdgeList();
+            for (Edge e : adjEdgeList) {
+                int nodeID1 = e.getNodeID1();
+                int nodeID2 = e.getNodeID2();
+                if (nodeID1 == first.getNodeID() || nodeID2 == first.getNodeID()) {
+                    e.setState(alvis301.State.path);
+                    System.out.println(e.getNodeID1()+"|"+e.getNodeID2());
+                    updateEdge(e);
+                    break;
+                }
+            }
     }
     public ArrayList<Node> getRandomSolution(){
        
