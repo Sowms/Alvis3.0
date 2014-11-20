@@ -14,7 +14,7 @@ import java.util.HashMap;
  */
 public class ColorMap {
     
-    private static HashMap <State,Color> colorMap;
+    private HashMap <State,Color> colorMap;
     public ColorMap() {
         colorMap = new HashMap();
         colorMap.put(State.unvisited,Color.lightGray);
@@ -22,7 +22,6 @@ public class ColorMap {
         colorMap.put(State.rollback,new Color(255,102,0));
         colorMap.put(State.old,Color.darkGray);
         colorMap.put(State.deleted, Color.white);
-        colorMap.put(State.rollback,new Color(255,102,0));
         colorMap.put(State.closed,new Color(153,153,255));
         colorMap.put(State.goal,Color.blue);
         colorMap.put(State.open,new Color(255,102,102));
@@ -42,16 +41,13 @@ public class ColorMap {
         ColorMap.cm = cm;
     }
     
-    public static Color getColor(State s) {
+    public Color getColor(State s) {
         return colorMap.get(s);
     }
-    public static void setColor(State s, Color c) {
+    public void setColor(State s, Color c) {
         colorMap.put(s,c);
     }
-    public static HashMap getMap() {
+    public HashMap getMap() {
         return colorMap;
     }
-    
-    
-    
 }

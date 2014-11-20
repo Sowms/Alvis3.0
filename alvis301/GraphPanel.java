@@ -30,7 +30,7 @@ public class GraphPanel extends javax.swing.JPanel {
     public GraphPanel() {
         gr = Graph.getInstance();
         gw = GraphWindow.getInstance();
-        colorMap = ColorMap.getMap();
+        colorMap = ColorMap.getInstance().getMap();
     }
    
     @Override
