@@ -143,7 +143,11 @@ public class GraphCreator {
             nodes.put(n1, N1);
             g.setNodes(nodes);
             noEdges++;
-            if (!g.getEdges().containsValue(e))
+            double dist = distance(N1,N2);
+            Random generator = new Random();
+            int delta = generator.nextInt((int)(0.1*dist));
+            e.setCost(dist+delta);    
+            if (!g.getEdges().containsValue(e)) 
                 g.createEdge(e);
         }
     }
