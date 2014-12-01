@@ -14,7 +14,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Locale;
 import java.util.Map;
+import java.util.Set;
 import javax.imageio.ImageIO;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
@@ -190,6 +193,16 @@ public class TSPWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        Set<Thread> threadSet = Thread.getAllStackTraces().keySet();
+        for (Thread currentThread : threadSet) {
+            String threadName = currentThread.toString();
+            if (threadName.contains("Thread") && threadName.contains("main")) {
+                System.out.println(threadName);
+                currentThread.interrupt();
+                break;
+            }
+        }
+        
         TSPLayoutCreator c = new TSPLayoutCreator();
         c.create(n);
         graphPanel1.repaint();  
@@ -209,6 +222,15 @@ public class TSPWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        Set<Thread> threadSet = Thread.getAllStackTraces().keySet();
+        for (Thread currentThread : threadSet) {
+            String threadName = currentThread.toString();
+            if (threadName.contains("Thread") && threadName.contains("main")) {
+                System.out.println(threadName);
+                currentThread.interrupt();
+                break;
+            }
+        }
         this.dispose();
         HomeWindow Main = new HomeWindow();
         Main.setVisible(true);
@@ -218,6 +240,16 @@ public class TSPWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        Set<Thread> threadSet = Thread.getAllStackTraces().keySet();
+        for (Thread currentThread : threadSet) {
+            String threadName = currentThread.toString();
+            if (threadName.contains("Thread") && threadName.contains("main")) {
+                System.out.println(threadName);
+                currentThread.interrupt();
+                break;
+            }
+        }
+        
         HashMap <Integer,Node> edges;
         path = new ArrayList<Edge>();
         Graph g = Graph.getInstance();

@@ -79,9 +79,10 @@ public abstract class Algorithm extends Thread {
             };
             SwingUtilities.invokeAndWait(showPanelRun);
             } catch ( InterruptedException ix ) {
-                System.out.println("main interrupted while waiting on invokeAndWait()");
+                Thread.currentThread().interrupt();
+                // System.out.println("main interrupted while waiting on invokeAndWait()");
             } catch ( InvocationTargetException x ) {
-                System.out.println("main exception thrown from run()");
+               // System.out.println("main exception thrown from run()");
             }
     }
     static String ans = "";
@@ -99,7 +100,7 @@ public abstract class Algorithm extends Thread {
             };
             SwingUtilities.invokeAndWait(showPanelRun);
             } catch ( InterruptedException ix ) {
-                System.out.println("main interrupted while waiting on invokeAndWait()");
+                Thread.currentThread().interrupt();
             } catch ( InvocationTargetException x ) {
                 System.out.println("main exception thrown from run()");
             }
@@ -116,7 +117,7 @@ public abstract class Algorithm extends Thread {
             };
             SwingUtilities.invokeAndWait(showPanelRun);
             } catch ( InterruptedException ix ) {
-                System.out.println("main interrupted while waiting on invokeAndWait()");
+                Thread.currentThread().interrupt();
             } catch ( InvocationTargetException x ) {
                 System.out.println("main exception thrown from run()");
             }
@@ -132,7 +133,7 @@ public abstract class Algorithm extends Thread {
             };
             SwingUtilities.invokeAndWait(showPanelRun);
             } catch ( InterruptedException ix ) {
-                System.out.println("main interrupted while waiting on invokeAndWait()");
+                Thread.currentThread().interrupt();
             } catch ( InvocationTargetException x ) {
                 System.out.println("main exception thrown from run()");
             }

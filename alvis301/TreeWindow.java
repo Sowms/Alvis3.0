@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 import javax.imageio.ImageIO;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
@@ -186,6 +187,16 @@ public class TreeWindow extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        Set<Thread> threadSet = Thread.getAllStackTraces().keySet();
+        for (Thread currentThread : threadSet) {
+            String threadName = currentThread.toString();
+            if (threadName.contains("Thread") && threadName.contains("main")) {
+                System.out.println(threadName);
+                currentThread.interrupt();
+                break;
+            }
+        }
+        
         TreeCreator c = new TreeCreator();
         c.create();
         graphPanel1.repaint();
@@ -203,6 +214,16 @@ public class TreeWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        Set<Thread> threadSet = Thread.getAllStackTraces().keySet();
+        for (Thread currentThread : threadSet) {
+            String threadName = currentThread.toString();
+            if (threadName.contains("Thread") && threadName.contains("main")) {
+                System.out.println(threadName);
+                currentThread.interrupt();
+                break;
+            }
+        }
+        
         this.dispose();
         HomeWindow Main = new HomeWindow();
         Main.setVisible(true);
@@ -229,6 +250,16 @@ public class TreeWindow extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         HashMap <Integer,Node> nodes;
         HashMap <Integer,Node> edges;
+        Set<Thread> threadSet = Thread.getAllStackTraces().keySet();
+        for (Thread currentThread : threadSet) {
+            String threadName = currentThread.toString();
+            if (threadName.contains("Thread") && threadName.contains("main")) {
+                System.out.println(threadName);
+                currentThread.interrupt();
+                break;
+            }
+        }
+        
         path = new ArrayList<Edge>();
         Graph g = Graph.getInstance();
         edges = g.getEdges();

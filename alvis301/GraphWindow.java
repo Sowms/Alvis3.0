@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
@@ -41,6 +42,8 @@ public final class GraphWindow extends javax.swing.JFrame {
     public static int time = 100;
     public String density;
     public ArrayList <Edge> path;
+    public BFSAlgorithm bfs;
+    public DFSAlgorithm dfs;
     public static GraphWindow getInstance() {
         return gw;
     }
@@ -349,6 +352,16 @@ public final class GraphWindow extends javax.swing.JFrame {
     }
     
     public void jMenuItem3ActionPerformed(ActionEvent evt) {
+        Set<Thread> threadSet = Thread.getAllStackTraces().keySet();
+        for (Thread currentThread : threadSet) {
+            String threadName = currentThread.toString();
+            if (threadName.contains("Thread") && threadName.contains("main")) {
+                System.out.println(threadName);
+                currentThread.interrupt();
+                break;
+            }
+        }
+        
         this.dispose();
         HomeWindow Main = new HomeWindow();
         Main.setVisible(true);
@@ -377,6 +390,16 @@ public final class GraphWindow extends javax.swing.JFrame {
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {                                         
         HashMap <Integer,Node> nodes;
         HashMap <Integer,Node> edges;
+        Set<Thread> threadSet = Thread.getAllStackTraces().keySet();
+        for (Thread currentThread : threadSet) {
+            String threadName = currentThread.toString();
+            if (threadName.contains("Thread") && threadName.contains("main")) {
+                System.out.println(threadName);
+                currentThread.interrupt();
+                break;
+            }
+        }
+        
         path = new ArrayList<Edge>();
         Graph g = Graph.getInstance();
         nodes = g.getNodes();
@@ -416,13 +439,13 @@ public final class GraphWindow extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null, list, "Choose Algorithm", JOptionPane.PLAIN_MESSAGE);
         String choice = Arrays.toString(list.getSelectedIndices());
         if(choice.equals("[0]")) {
-            BFSAlgorithm bfs = new BFSAlgorithm(1);
+            bfs = new BFSAlgorithm(1);
             bfs.setGraph();
             bfs.start();
             graphPanel1.repaint();
         }
         else if (choice.equals("[1]")) {
-            DFSAlgorithm dfs = new DFSAlgorithm(1);
+            dfs = new DFSAlgorithm(1);
             dfs.setGraph();
             dfs.start();
             graphPanel1.repaint();

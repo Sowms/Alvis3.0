@@ -45,7 +45,7 @@ public class TSPGreedy extends Algorithm{
                 setTour(next);
                 cur = next;
                 display();
-                printSolution(cur);
+               // printSolution(cur);
             }
         }
     }
@@ -94,7 +94,7 @@ public class TSPGreedy extends Algorithm{
                 int nodeID2 = e.getNodeID2();
                 if (nodeID1 == n.getNodeID() || nodeID2 == n.getNodeID()) {
                     e.setState(alvis301.State.path);
-                    System.out.println(e.getNodeID1()+"|"+e.getNodeID2());
+                    //System.out.println(e.getNodeID1()+"|"+e.getNodeID2());
                     updateEdge(e);
                     break;
                 }
@@ -108,7 +108,7 @@ public class TSPGreedy extends Algorithm{
                 int nodeID2 = e.getNodeID2();
                 if (nodeID1 == first.getNodeID() || nodeID2 == first.getNodeID()) {
                     e.setState(alvis301.State.path);
-                    System.out.println(e.getNodeID1()+"|"+e.getNodeID2());
+                   // System.out.println(e.getNodeID1()+"|"+e.getNodeID2());
                     updateEdge(e);
                     break;
                 }
