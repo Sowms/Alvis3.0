@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package alvis301;
+package in.ac.iitm.alvis301;
 
 import java.awt.Dimension;
 
