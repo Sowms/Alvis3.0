@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package alvis301;
+package in.ac.iitm.alvis301;
 
 import java.util.ArrayList;
 //import java.util.HashMap;
@@ -82,7 +82,7 @@ public class TSPGreedy extends Algorithm{
         //tour.remove(0);
         for (Map.Entry pairs : edges.entrySet()) {
             Edge e = (Edge) pairs.getValue();
-            e.setState(alvis301.State.tsp);
+            e.setState(in.ac.iitm.alvis301.State.tsp);
             updateEdge(e);
         }
         for (Node n:tour) {
@@ -93,7 +93,7 @@ public class TSPGreedy extends Algorithm{
                 int nodeID1 = e.getNodeID1();
                 int nodeID2 = e.getNodeID2();
                 if (nodeID1 == n.getNodeID() || nodeID2 == n.getNodeID()) {
-                    e.setState(alvis301.State.path);
+                    e.setState(in.ac.iitm.alvis301.State.path);
                     //System.out.println(e.getNodeID1()+"|"+e.getNodeID2());
                     updateEdge(e);
                     break;
@@ -107,7 +107,7 @@ public class TSPGreedy extends Algorithm{
                 int nodeID1 = e.getNodeID1();
                 int nodeID2 = e.getNodeID2();
                 if (nodeID1 == first.getNodeID() || nodeID2 == first.getNodeID()) {
-                    e.setState(alvis301.State.path);
+                    e.setState(in.ac.iitm.alvis301.State.path);
                    // System.out.println(e.getNodeID1()+"|"+e.getNodeID2());
                     updateEdge(e);
                     break;

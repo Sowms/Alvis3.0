@@ -1,5 +1,5 @@
 
-package alvis301;
+package in.ac.iitm.alvis301;
 
 import javax.swing.JFrame;
 
