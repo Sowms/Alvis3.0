@@ -1,7 +1,7 @@
 
-package alvis301;
+package in.ac.iitm.alvis301;
 
-import static alvis301.State.*;
+import static in.ac.iitm.alvis301.State.*;
 import java.util.ArrayList;
 
 /**

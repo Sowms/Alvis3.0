@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package alvis301;
+package in.ac.iitm.alvis301;
 
 import java.awt.Dimension;
 import java.awt.FileDialog;
@@ -70,7 +70,7 @@ public class TSPWindow extends javax.swing.JFrame {
 
         jMenuItem2 = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JSeparator();
-        graphPanel1 = new alvis301.GraphPanel();
+        graphPanel1 = new GraphPanel();
         jButton1 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
@@ -315,7 +315,7 @@ public class TSPWindow extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private alvis301.GraphPanel graphPanel1;
+    private GraphPanel graphPanel1;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;

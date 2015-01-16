@@ -1,5 +1,5 @@
 
-package alvis301;
+package in.ac.iitm.alvis301;
 
 import java.awt.Dimension;
 import java.awt.FileDialog;
@@ -187,7 +187,7 @@ public final class GraphWindow extends javax.swing.JFrame {
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jSeparator2 = new javax.swing.JSeparator();
-        graphPanel1 = new alvis301.GraphPanel();
+        graphPanel1 = new GraphPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -610,7 +610,7 @@ public final class GraphWindow extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify                     
-    private alvis301.GraphPanel graphPanel1;
+    private GraphPanel graphPanel1;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;

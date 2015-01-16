@@ -1,5 +1,5 @@
 
-package alvis301;
+package in.ac.iitm.alvis301;
 
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -52,7 +52,7 @@ public class Minimax extends Algorithm{
                 updateNode(child); 
                 if(child.equals(children.get(0)))
                     cv=v;
-                else if(j.getState()==alvis301.State.max)
+                else if(j.getState()==in.ac.iitm.alvis301.State.max)
                     cv=(cv>v)?cv:v;
                 else
                     cv=(cv<v)?cv:v;
@@ -80,11 +80,11 @@ public class Minimax extends Algorithm{
                 return;
             Node next = children.get(0);
             gd = (GameNodeData) next.getData();
-            if (cur.getState() == alvis301.State.min) {
+            if (cur.getState() == in.ac.iitm.alvis301.State.min) {
                         ArrayList<Edge> adjList = cur.getAdjEdgeList();
                         for (Edge e : adjList) {
                             if (children.contains(g.getNode(e.getNodeID1())) || children.contains(g.getNode(e.getNodeID2()))) {
-                                e.setState(alvis301.State.path);
+                                e.setState(in.ac.iitm.alvis301.State.path);
                                 updateEdge(e);
                             }
                         }    
@@ -102,12 +102,12 @@ public class Minimax extends Algorithm{
                         minNode = children.get(i);
                     }
             }
-            if (cur.getState() == alvis301.State.max) {
+            if (cur.getState() == in.ac.iitm.alvis301.State.max) {
                 next = maxNode;
                 ArrayList<Edge> adjList = cur.getAdjEdgeList();
                 for (Edge e : adjList) {
                     if (e.getNodeID1() == next.getNodeID() || e.getNodeID2() == next.getNodeID()) {
-                        e.setState(alvis301.State.path);
+                        e.setState(in.ac.iitm.alvis301.State.path);
                         updateEdge(e);
                         break;
                     }

@@ -4,12 +4,12 @@
  * and open the template in the editor.
  */
 
-package alvis301;
+package in.ac.iitm.alvis301;
 
 /**
  *
  * @author SavithaSam
  */
-public enum State {
-    boundary, rollback, unvisited, open, closed, relay, goal, start, path,pipe, max, min, tsp,terminal, pipepath, old, deleted, pop_path; 
+public class NodeData {
+    
 }
