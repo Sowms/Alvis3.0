@@ -26,6 +26,7 @@ public class Node {
         nodeState = unvisited;
         adjList = new ArrayList<Node>();
         adjEdgeList = new ArrayList<Edge>();
+        data = new NodeData();
     }
     public int getNodeID() {
         return nodeID;

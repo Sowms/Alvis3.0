@@ -52,6 +52,7 @@ public abstract class Algorithm extends Thread {
         final GraphWindow instance1 = GraphWindow.getInstance();
         final TreeWindow instance2 = TreeWindow.getInstance();
         final TSPWindow instance3 = TSPWindow.getInstance();
+        //final String s = d.toString();
         try {
             if(type==1) {
                 Thread.sleep(GraphWindow.time);
@@ -71,7 +72,9 @@ public abstract class Algorithm extends Thread {
                         else if(type==2)
                             instance2.showGraph();
                         else if(type==3)
+                        {
                             instance3.showGraph();
+                        }
                     } catch (InterruptedException ex) {
                         Logger.getLogger(Algorithm.class.getName()).log(Level.SEVERE, null, ex);
                     }
@@ -79,10 +82,38 @@ public abstract class Algorithm extends Thread {
             };
             SwingUtilities.invokeAndWait(showPanelRun);
             } catch ( InterruptedException ix ) {
-                Thread.currentThread().interrupt();
-                // System.out.println("main interrupted while waiting on invokeAndWait()");
+                System.out.println("main interrupted while waiting on invokeAndWait()");
             } catch ( InvocationTargetException x ) {
-               // System.out.println("main exception thrown from run()");
+                System.out.println("main exception thrown from run()");
+            }
+    }
+    
+    
+    //call this function to display TSP SCREEN(INPUT PARAMETERS:current tour_cost,current temprature
+    public void displayTSP(Double tour_cost,Double temp) {
+        
+        final TSPWindow instance3 = TSPWindow.getInstance();
+        final String s = tour_cost.toString();
+        final String t = temp.toString();
+        try {
+            Thread.sleep(TSPWindow.time);
+            Runnable showPanelRun = new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                            instance3.showGraph();
+                            instance3.setDistance(s);
+                            instance3.setTemprature(t);
+                    } catch (InterruptedException ex) {
+                        Logger.getLogger(Algorithm.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            };
+            SwingUtilities.invokeAndWait(showPanelRun);
+            } catch ( InterruptedException ix ) {
+                System.out.println("main interrupted while waiting on invokeAndWait()");
+            } catch ( InvocationTargetException x ) {
+                System.out.println("main exception thrown from run()");
             }
     }
     static String ans = "";
@@ -100,7 +131,7 @@ public abstract class Algorithm extends Thread {
             };
             SwingUtilities.invokeAndWait(showPanelRun);
             } catch ( InterruptedException ix ) {
-                Thread.currentThread().interrupt();
+                System.out.println("main interrupted while waiting on invokeAndWait()");
             } catch ( InvocationTargetException x ) {
                 System.out.println("main exception thrown from run()");
             }
@@ -117,7 +148,7 @@ public abstract class Algorithm extends Thread {
             };
             SwingUtilities.invokeAndWait(showPanelRun);
             } catch ( InterruptedException ix ) {
-                Thread.currentThread().interrupt();
+                System.out.println("main interrupted while waiting on invokeAndWait()");
             } catch ( InvocationTargetException x ) {
                 System.out.println("main exception thrown from run()");
             }
@@ -133,7 +164,7 @@ public abstract class Algorithm extends Thread {
             };
             SwingUtilities.invokeAndWait(showPanelRun);
             } catch ( InterruptedException ix ) {
-                Thread.currentThread().interrupt();
+                System.out.println("main interrupted while waiting on invokeAndWait()");
             } catch ( InvocationTargetException x ) {
                 System.out.println("main exception thrown from run()");
             }

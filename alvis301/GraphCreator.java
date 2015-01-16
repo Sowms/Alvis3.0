@@ -128,25 +128,8 @@ public class GraphCreator {
             int miny = point.get(1);
             int n1 = g.getNodeID(minx, miny);
             int n2 = g.getNodeID(x1, y1);
-            Node N1 = nodes.get(n1);
-            Node N2 = nodes.get(n2);
-            ArrayList<Edge> adjEdgeList_N1 = N1.getAdjEdgeList();
-            ArrayList<Node> adjList_N1 = N1.getAdjList();
-            adjList_N1.add(N2);
             Edge e = new Edge(n1, n2, noEdges);
-            adjEdgeList_N1.add(e);
-            ArrayList<Edge> adjEdgeList_N2 = N2.getAdjEdgeList();
-            ArrayList<Node> adjList_N2 = N2.getAdjList();
-            adjList_N2.add(N1);
-            adjEdgeList_N2.add(e);
-            nodes.put(n2, N2);
-            nodes.put(n1, N1);
-            g.setNodes(nodes);
             noEdges++;
-            double dist = distance(N1,N2);
-            Random generator = new Random();
-            int delta = generator.nextInt((int)(0.1*dist));
-            e.setCost(dist+delta);    
             if (!g.getEdges().containsValue(e)) 
                 g.createEdge(e);
         }
@@ -184,26 +167,6 @@ public class GraphCreator {
                 pos.add((double)j);
                 int nodeid2 = mapping.get(pos).getNodeID();
                 Edge newEdge = new Edge(nodeid1,nodeid2,id);
-                Node n1 = g.getNode(nodeid1);
-                Node n2 = g.getNode(nodeid2);
-                double dist = distance(n1,n2);
-                Random generator = new Random();
-                int delta = generator.nextInt((int)(0.1*dist));
-                newEdge.setCost(dist+delta);
-                ArrayList <Node> adjList1 = n1.getAdjList();
-                ArrayList <Node> adjList2 = n2.getAdjList();
-                adjList1.add(n2);
-                adjList2.add(n1);
-                n1.setAdjList(adjList1);
-                n2.setAdjList(adjList2);
-                ArrayList <Edge> adjEdgeList1 = n1.getAdjEdgeList();
-                ArrayList <Edge> adjEdgeList2 = n2.getAdjEdgeList();
-                adjEdgeList1.add(newEdge);
-                adjEdgeList2.add(newEdge);
-                n1.setAdjEdgeList(adjEdgeList1);
-                n2.setAdjEdgeList(adjEdgeList2);
-                g.setNode(n1);
-                g.setNode(n2);
                 if (!g.getEdges().containsValue(newEdge))
                     g.createEdge(newEdge);
             }
@@ -222,26 +185,6 @@ public class GraphCreator {
                 
                 int nodeid2 = mapping.get(pos).getNodeID();
                 Edge newEdge = new Edge(nodeid1,nodeid2,id);
-                Node n1 = g.getNode(nodeid1);
-                Node n2 = g.getNode(nodeid2);
-                double dist = distance(n1,n2);
-                Random generator = new Random();
-                int delta = generator.nextInt((int)(0.1*dist));
-                newEdge.setCost(dist+delta);
-                ArrayList <Node> adjList1 = n1.getAdjList();
-                ArrayList <Node> adjList2 = n2.getAdjList();
-                adjList1.add(n2);
-                adjList2.add(n1);
-                n1.setAdjList(adjList1);
-                n2.setAdjList(adjList2);
-                ArrayList <Edge> adjEdgeList1 = n1.getAdjEdgeList();
-                ArrayList <Edge> adjEdgeList2 = n2.getAdjEdgeList();
-                adjEdgeList1.add(newEdge);
-                adjEdgeList2.add(newEdge);
-                n1.setAdjEdgeList(adjEdgeList1);
-                n2.setAdjEdgeList(adjEdgeList2);
-                g.setNode(n1);
-                g.setNode(n2);
                 if (!g.getEdges().containsValue(newEdge))
                     g.createEdge(newEdge);
             }
@@ -260,26 +203,6 @@ public class GraphCreator {
                 
                 int nodeid2 = mapping.get(pos).getNodeID();
                 Edge newEdge = new Edge(nodeid1,nodeid2,id);
-                Node n1 = g.getNode(nodeid1);
-                Node n2 = g.getNode(nodeid2);
-                double dist = distance(n1,n2);
-                Random generator = new Random();
-                int delta = generator.nextInt((int)(0.1*dist));
-                newEdge.setCost(dist+delta);
-                ArrayList <Node> adjList1 = n1.getAdjList();
-                ArrayList <Node> adjList2 = n2.getAdjList();
-                adjList1.add(n2);
-                adjList2.add(n1);
-                n1.setAdjList(adjList1);
-                n2.setAdjList(adjList2);
-                ArrayList <Edge> adjEdgeList1 = n1.getAdjEdgeList();
-                ArrayList <Edge> adjEdgeList2 = n2.getAdjEdgeList();
-                adjEdgeList1.add(newEdge);
-                adjEdgeList2.add(newEdge);
-                n1.setAdjEdgeList(adjEdgeList1);
-                n2.setAdjEdgeList(adjEdgeList2);
-                g.setNode(n1);
-                g.setNode(n2);
                 if (!g.getEdges().containsValue(newEdge))
                     g.createEdge(newEdge);
             }
@@ -303,11 +226,11 @@ public class GraphCreator {
         HashMap <Integer,Edge> edges = g.getEdges();
         while (i<counter) {
             int randomEdge = edgeIDs.get(i);
-            Edge tempEdge = edges.get(randomEdge);
+            /*Edge tempEdge = edges.get(randomEdge);
             if (tempEdge==null) {
                 i++;
                 continue;
-            }
+            }*/
             Edge curEdge = edges.remove(randomEdge);
             if (curEdge == null) {
                 i++;

@@ -53,6 +53,7 @@ public class GraphPanel extends javax.swing.JPanel {
             Edge e = (Edge) pairs.getValue();
             int nodeID1 = e.getNodeID1();
             int nodeID2 = e.getNodeID2();
+   //         System.out.println(e.getEdgeID()+"|"+e.getNodeID1()+"|"+e.getNodeID2());
             Node n1 = gr.getNode(nodeID1);
             Node n2 = gr.getNode(nodeID2);
             if(n1==null||n2==null)

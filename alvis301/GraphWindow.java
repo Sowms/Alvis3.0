@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 import java.util.logging.Level;
@@ -44,6 +45,11 @@ public final class GraphWindow extends javax.swing.JFrame {
     public ArrayList <Edge> path;
     public BFSAlgorithm bfs;
     public DFSAlgorithm dfs;
+    public SMGSAlgo smgs;
+    public BFHS bfhs;
+    public BeamSearch bs;
+    public DCBS dcbs;
+    public DCBFHS dcbfhs;
     public static GraphWindow getInstance() {
         return gw;
     }
@@ -435,7 +441,7 @@ public final class GraphWindow extends javax.swing.JFrame {
     }     
     //Call your algorithm here for testing
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {                                         
-        JList list = new JList(new String[] {"BFS", "DFS", "Astar"});
+        JList list = new JList(new String[] {"BFS", "DFS", "SMGS", "BS", "DCBS","BFHS","DCBFHS" });
         JOptionPane.showMessageDialog(null, list, "Choose Algorithm", JOptionPane.PLAIN_MESSAGE);
         String choice = Arrays.toString(list.getSelectedIndices());
         if(choice.equals("[0]")) {
@@ -448,6 +454,106 @@ public final class GraphWindow extends javax.swing.JFrame {
             dfs = new DFSAlgorithm(1);
             dfs.setGraph();
             dfs.start();
+            graphPanel1.repaint();
+        }
+        else if (choice.equals("[2]")) {
+            smgs = new SMGSAlgo(1);
+            HashMap<Integer,Node> nodes = Graph.getInstance().getNodes();
+            HashMap<Integer,Node> newNodes = new HashMap<Integer,Node>();
+            Iterator nodeIterator = nodes.entrySet().iterator();
+            while (nodeIterator.hasNext()) {
+                Map.Entry pairs = (Map.Entry)nodeIterator.next();
+                System.out.println(pairs.getKey() + " = " + pairs.getValue());
+                Node currentNode = (Node) pairs.getValue();
+                SMGSNodeData sdata = new SMGSNodeData(currentNode.getNodeID());
+                currentNode.setData(sdata);
+                newNodes.put(currentNode.getNodeID(), currentNode);
+            }
+            Graph g = Graph.getInstance();
+            g.setNodes(newNodes);
+            Graph.setInstance(g);
+            smgs.setGraph();
+            smgs.start();
+            graphPanel1.repaint();
+        }
+        else if (choice.equals("[3]")) {
+            bs = new BeamSearch(1);
+            HashMap<Integer,Node> nodes = Graph.getInstance().getNodes();
+            HashMap<Integer,Node> newNodes = new HashMap<Integer,Node>();
+            Iterator nodeIterator = nodes.entrySet().iterator();
+            while (nodeIterator.hasNext()) {
+                Map.Entry pairs = (Map.Entry)nodeIterator.next();
+                System.out.println(pairs.getKey() + " = " + pairs.getValue());
+                Node currentNode = (Node) pairs.getValue();
+                DCNodeData sdata = new DCNodeData();
+                currentNode.setData(sdata);
+                newNodes.put(currentNode.getNodeID(), currentNode);
+            }
+            Graph g = Graph.getInstance();
+            g.setNodes(newNodes);
+            Graph.setInstance(g);
+            bs.setGraph();
+            bs.start();
+            graphPanel1.repaint();
+        }
+        else if (choice.equals("[4]")) {
+            dcbs = new DCBS(1);
+            HashMap<Integer,Node> nodes = Graph.getInstance().getNodes();
+            HashMap<Integer,Node> newNodes = new HashMap<Integer,Node>();
+            Iterator nodeIterator = nodes.entrySet().iterator();
+            while (nodeIterator.hasNext()) {
+                Map.Entry pairs = (Map.Entry)nodeIterator.next();
+                System.out.println(pairs.getKey() + " = " + pairs.getValue());
+                Node currentNode = (Node) pairs.getValue();
+                DCNodeData sdata = new DCNodeData();
+                currentNode.setData(sdata);
+                newNodes.put(currentNode.getNodeID(), currentNode);
+            }
+            Graph g = Graph.getInstance();
+            g.setNodes(newNodes);
+            Graph.setInstance(g);
+            dcbs.setGraph();
+            dcbs.start();
+            graphPanel1.repaint();
+        }
+        else if (choice.equals("[5]")) {
+            bfhs = new BFHS(1);
+            HashMap<Integer,Node> nodes = Graph.getInstance().getNodes();
+            HashMap<Integer,Node> newNodes = new HashMap<Integer,Node>();
+            Iterator nodeIterator = nodes.entrySet().iterator();
+            while (nodeIterator.hasNext()) {
+                Map.Entry pairs = (Map.Entry)nodeIterator.next();
+                System.out.println(pairs.getKey() + " = " + pairs.getValue());
+                Node currentNode = (Node) pairs.getValue();
+                DCNodeData sdata = new DCNodeData();
+                currentNode.setData(sdata);
+                newNodes.put(currentNode.getNodeID(), currentNode);
+            }
+            Graph g = Graph.getInstance();
+            g.setNodes(newNodes);
+            Graph.setInstance(g);
+            bfhs.setGraph();
+            bfhs.start();
+            graphPanel1.repaint();
+        }
+        else if (choice.equals("[7]")) {
+            dcbfhs = new DCBFHS(1);
+            HashMap<Integer,Node> nodes = Graph.getInstance().getNodes();
+            HashMap<Integer,Node> newNodes = new HashMap<Integer,Node>();
+            Iterator nodeIterator = nodes.entrySet().iterator();
+            while (nodeIterator.hasNext()) {
+                Map.Entry pairs = (Map.Entry)nodeIterator.next();
+                System.out.println(pairs.getKey() + " = " + pairs.getValue());
+                Node currentNode = (Node) pairs.getValue();
+                DCNodeData sdata = new DCNodeData();
+                currentNode.setData(sdata);
+                newNodes.put(currentNode.getNodeID(), currentNode);
+            }
+            Graph g = Graph.getInstance();
+            g.setNodes(newNodes);
+            Graph.setInstance(g);
+            dcbfhs.setGraph();
+            dcbfhs.start();
             graphPanel1.repaint();
         }
         jButton6.setEnabled(true);

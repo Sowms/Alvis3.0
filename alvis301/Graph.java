@@ -3,6 +3,8 @@ package alvis301;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
+import java.util.Random;
 
 /**
  *
@@ -31,6 +33,9 @@ public class Graph {
     //Do not use the following four methods
     public static Graph getInstance(){
         return graph;
+    }
+    public double distance(Node n1, Node n2) {
+        return Math.sqrt(Math.pow((n1.getX()-n2.getX()),2)+Math.pow((n1.getY()-n2.getY()),2));
     }
     public static void setInstance(Graph g){
         graph = g;
@@ -96,6 +101,34 @@ public class Graph {
         posID.put(position, n.getNodeID());
     }
     public void createEdge(Edge e) {
+        int node1 = e.getNodeID1();
+        int node2 = e.getNodeID2();
+        for (Map.Entry pairs : edgeList.entrySet()) {
+            Edge curEdge = (Edge) pairs.getValue();
+            if (curEdge.equals(e) || (curEdge.getNodeID1()==node1 && curEdge.getNodeID2()==node2) ||(curEdge.getNodeID1()==node2 && curEdge.getNodeID2()==node1))
+                return;
+        }
+        Node n1 = getNode(node1);
+        Node n2 = getNode(node2);
+        double dist = distance(n1,n2);
+        System.out.println(dist);
+        Random generator = new Random();
+        int delta = generator.nextInt((int)(0.1*dist));
+        e.setCost(dist+delta);
+        ArrayList <Node> adjList1 = n1.getAdjList();
+        ArrayList <Node> adjList2 = n2.getAdjList();
+        adjList1.add(n2);
+        adjList2.add(n1);
+        n1.setAdjList(adjList1);
+        n2.setAdjList(adjList2);
+        ArrayList <Edge> adjEdgeList1 = n1.getAdjEdgeList();
+        ArrayList <Edge> adjEdgeList2 = n2.getAdjEdgeList();
+        adjEdgeList1.add(e);
+        adjEdgeList2.add(e);
+        n1.setAdjEdgeList(adjEdgeList1);
+        n2.setAdjEdgeList(adjEdgeList2);
+        setNode(n1);
+        setNode(n2);
         edgeList.put(e.getEdgeID(), e);
     } 
     public void setPosIDs(HashMap posID)
